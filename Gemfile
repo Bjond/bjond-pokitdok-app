@@ -18,6 +18,8 @@ gem 'binding_of_caller'
 gem 'meta_request'
 gem 'awesome_print'
 
+gem 'bjond-api', :path => '../bjond-integration-gem/'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
