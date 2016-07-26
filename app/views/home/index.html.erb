@@ -1,9 +1,14 @@
-<h1 class="title" ng-controller="homeController">
-  Bjond App
-</h1>
+<div class="home-controller" ng-controller="homeController">
+  <h1 class="title">
+    Bjond PokitDok App
+  </h1>
 
+    <div class="result">
+      {{result}}
+    </div>
 
-  <%= @result %>
+    <button ng-click="callPokitDok()">Sample Call</button>
 
-  <%= link_to "Registration", {:controller => "bjondservices", :action => "index"} %>
+    <%= link_to "Registration", {:controller => "bjondservices", :action => "index"} %>
+  </div>
 </div>

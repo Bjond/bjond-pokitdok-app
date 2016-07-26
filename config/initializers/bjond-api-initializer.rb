@@ -14,14 +14,19 @@ BjondIntegration::BjondAppConfig.instance.active_definition = integration_app
 
 
 BjondIntegration::BjondAppConfig.instance.group_configuration_schema = {
+  :id => 'urn:jsonschema:com:bjond:persistence:bjondservice:GroupConfiguration',
   :title => 'bjond-pokitdok-app-schema',
   :type  => 'object',
   :properties => {
     :client_id => {
-      :type => 'string' 
+      :type => 'string',
+      :description => 'This is the client_id, as specified by your pokitdok credentials.',
+      :title => 'Client ID'
     },
     :secret => {
-      :type => 'string'
+      :type => 'string',
+      :description => 'This is the client_secret, as specified by your pokitdok credentials.',
+      :title => 'Client Secret'
     }
   },
   :required => ['client_id', 'secret']

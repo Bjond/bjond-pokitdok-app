@@ -3,8 +3,11 @@ class HomeController < ApplicationController
   require 'pokitdok'
 
   def index
+  end
+
+  def call_pokitdok
     client = PokitDok::PokitDok.new(ENV['POKITDOK_CLIENT_ID'], ENV['POKITDOK_SECRET'])
-    @result = client.authorizations({
+    render :json => client.authorizations({
         event: {
             category: "health_services_review",
             certification_type: "initial",

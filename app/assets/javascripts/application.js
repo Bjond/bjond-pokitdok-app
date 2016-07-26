@@ -16,4 +16,16 @@
 //= require angular
 //= require_tree .
 
-angular.module('bjond-app',[]);
+angular.module('bjond-app',[])
+
+.controller('homeController', ['$scope', '$http', function ($scope, $http) {
+
+  $scope.result = null;
+
+  $scope.callPokitDok = function () {
+    $http.get('/callsamplepokitdok').then(function (response) {
+      $scope.result = response.data;
+    });
+  };
+
+}]);
