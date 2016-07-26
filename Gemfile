@@ -20,6 +20,10 @@ gem 'awesome_print'
 
 gem 'bjond-api', :path => '../bjond-integration-gem/'
 
+gem 'jwe'
+
+gem 'pokitdok-ruby'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
