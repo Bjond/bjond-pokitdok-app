@@ -35,3 +35,5 @@ BjondIntegration::BjondAppConfig.instance.group_configuration_schema = {
 BjondIntegration::BjondAppConfig.instance.group_configuration = {
   :client_id => ENV['pokitdok_client_id'], :secret => ENV['pokitdok_secret']
 }
+
+BjondIntegration::BjondAppConfig.instance.encryption_key_name = 'BJOND_POKITDOK_ENCRYPTION_KEY'

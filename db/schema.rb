@@ -11,16 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726195312) do
+ActiveRecord::Schema.define(version: 20160727144938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bjond_registrations", force: :cascade do |t|
     t.string   "server"
-    t.string   "encryptionKey"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "encrypted_encryption_key"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "encrypted_encryption_key_iv"
+    t.string   "host"
+    t.string   "ip"
   end
 
 end
