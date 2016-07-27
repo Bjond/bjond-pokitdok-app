@@ -2,8 +2,9 @@
 
 This will serve as the Bjond integration app with the pokitdok API. 
 
-== Development
+== Configuration
 
-Set the following environment variables from your pokitdok credentials: 
-- POKITDOK_CLIENT_ID
-- POKITDOK_SECRET
+Your pocketdok client ID and client secret may be configured in the Bjond client (you must be tenant administrator). Please be prepared to supply your: 
+- Pokitdok Client ID
+- Pokitdok Secret
+
