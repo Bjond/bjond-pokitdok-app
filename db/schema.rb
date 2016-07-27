@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727144938) do
+ActiveRecord::Schema.define(version: 20160727211310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,22 @@ ActiveRecord::Schema.define(version: 20160727144938) do
     t.string   "encrypted_encryption_key_iv"
     t.string   "host"
     t.string   "ip"
+  end
+
+  create_table "bjond_services", force: :cascade do |t|
+    t.string   "group_id"
+    t.string   "endpoint"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "registration_id"
+  end
+
+  create_table "pokit_dok_configurations", force: :cascade do |t|
+    t.string   "client_id"
+    t.string   "secret"
+    t.string   "registration_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
