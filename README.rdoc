@@ -5,6 +5,18 @@ This will serve as the Bjond integration app with the pokitdok API.
 == Configuration
 
 Your pocketdok client ID and client secret may be configured in the Bjond client (you must be tenant administrator). Please be prepared to supply your: 
+
 - Pokitdok Client ID
 - Pokitdok Secret
+
+== Development
+
+- Run
+To install client side dependencies, run - 
+
+    bower install
+
+To create default config file - 
+
+    rails g initializer
 

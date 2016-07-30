@@ -14,9 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular
+//= require bjond_api
 //= require_tree .
 
-angular.module('bjond-app',[])
+angular.module('bjond-app',['bjond-api'])
 
 .controller('homeController', ['$scope', '$http', function ($scope, $http) {
 
