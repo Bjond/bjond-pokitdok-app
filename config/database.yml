@@ -1,11 +1,11 @@
 development: &development
   adapter: postgresql
   host: localhost
-  database: bjondapp_dev
+  database: bjond_pokitdok_dev
   encoding: unicode
   
 test: &test
   adapter: postgresql
   host: localhost
-  database: bjondapp_test
+  database: bjond_pokitdok_test
   encoding: unicode 
