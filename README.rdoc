@@ -20,3 +20,11 @@ To create default config file -
 
     rails g initializer
 
+=== Environment Variables - 
+
+- BJOND_POKITDOK_ENCRYPTION_KEY
+
+Guid. Can be generated using the following line from the rails console - 
+
+    [ Array.new(32) { rand(256) }.pack('C*') ].pack('m').chop
+
