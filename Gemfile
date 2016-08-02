@@ -19,10 +19,8 @@ gem 'better_errors', '~> 2.1', '>= 2.1.1'
 gem 'binding_of_caller', '~> 0.7.2'
 gem 'meta_request', '~> 0.3.4'
 gem 'awesome_print', '~> 1.6', '>= 1.6.1'
-
-gem 'syruppay_jose', '~> 1.0'
-
-gem 'bjond-api', :path => '../bjond-integration-gem/'
+gem 'pry'
+gem 'bjond-api', '~> 0.1.0'
 
 gem 'pokitdok-ruby', '~> 0.8.0'
 
@@ -39,6 +37,5 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  gem 'pry'
 end
 

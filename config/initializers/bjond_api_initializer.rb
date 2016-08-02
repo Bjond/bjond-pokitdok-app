@@ -41,7 +41,7 @@ config.group_configuration = {
 config.encryption_key_name = 'BJOND_POKITDOK_ENCRYPTION_KEY'
 
 def config.configure_group(result, bjond_registration)
-  pdconfig = PokitDokConfiguration.find_or_initialize_by(:registration_id => bjond_registration.id)
+  pdconfig = PokitDokConfiguration.find_or_initialize_by(:bjond_registration_id => bjond_registration.id)
   if (pdconfig.client_id != result['client_id'] || pdconfig.secret = result['secret'])
     pdconfig.client_id = result['client_id']
     pdconfig.secret = result['secret']
@@ -51,7 +51,7 @@ def config.configure_group(result, bjond_registration)
 end
 
 def config.get_group_configuration(bjond_registration)
-  pdconfig = PokitDokConfiguration.find_by_registration_id(bjond_registration.id)
+  pdconfig = PokitDokConfiguration.find_by_bjond_registration_id(bjond_registration.id)
   if (pdconfig.nil?)
     puts 'No configuration has been saved yet.'
     return {}
