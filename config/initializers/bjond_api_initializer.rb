@@ -50,7 +50,7 @@ end
 config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
   app_def.id           = '1e8dab76-2493-48e9-992d-fc04d6d8dabc'
   app_def.author       = 'Bjond, Inc.'
-  app_def.name         = 'Bjond-PokitDok-App'
+  app_def.name         = 'Eligibility / Authorization'
   app_def.description  = 'Adapter between Bjond and PokitDok API.'
   app_def.iconURL      = 'https://platform.pokitdok.com/documentation/v4/images/logo.png'
   app_def.integrationEvent = [
