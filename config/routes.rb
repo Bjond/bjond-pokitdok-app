@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   post '/consequence/checkpokitdok' => 'consequence#checkpokitdok'
 
+  resources :pokit_dok_configurations
+
 end

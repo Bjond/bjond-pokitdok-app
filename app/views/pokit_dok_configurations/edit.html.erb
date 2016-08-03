@@ -1,0 +1,35 @@
+<h1>Editing Pokitdok Configuration</h1>
+
+
+<%= form_for(@pokitdok_configuration) do |f| %>
+  <% if @pokitdok_configuration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pokitdok_configuration.errors.count, "error") %> prohibited this pokitdok_configuration from being saved:</h2>
+
+      <ul>
+      <% @pokitdok_configuration.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :secret %><br>
+    <%= f.text_field :secret %>
+  </div>
+  <div class="field">
+    Client ID
+    <%= f.text_field :client_id %>
+  </div>
+  <div class="field">
+    Bjond Person ID
+    <%= f.text_field :sample_person_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @pokitdok_configuration %> 

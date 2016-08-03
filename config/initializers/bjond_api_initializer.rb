@@ -63,7 +63,7 @@ config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
       e.fields = [
         BjondApi::BjondField.new.tap do |f|
           f.id = '2091de2e-dcf9-461a-b66c-ea4c01081f9c'
-          f.jsonKey = 'patient'
+          f.jsonKey = 'bjondPersonId'
           f.name = 'Patient'
           f.description = 'The patient identifier'
           f.fieldType = 'Person'
