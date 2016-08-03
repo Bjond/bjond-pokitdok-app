@@ -1,17 +1,6 @@
 require 'bjond-api'
 
-integration_app = BjondApi::BjondAppDefinition.new
-integration_app.id           = '1e8dab76-2493-48e9-992d-fc04d6d8dabc'
-integration_app.author       = 'Bjond, Inc.'
-integration_app.name         = 'Bjond-PokitDok-App'
-integration_app.description  = 'Adapter between Bjond and PokitDok API.'
-integration_app.iconURL      = 'https://platform.pokitdok.com/documentation/v4/images/logo.png'
-integration_app.integrationEvent = []
-
 config = BjondApi::BjondAppConfig.instance
-
-config.active_definition = integration_app
-
 
 config.group_configuration_schema = {
   :id => 'urn:jsonschema:com:bjond:persistence:bjondservice:GroupConfiguration',
@@ -56,4 +45,61 @@ def config.get_group_configuration(bjond_registration)
   else 
     return {:client_id => pdconfig.client_id, :secret => pdconfig.secret}
   end
+end
+
+config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
+  app_def.id           = '1e8dab76-2493-48e9-992d-fc04d6d8dabc'
+  app_def.author       = 'Bjond, Inc.'
+  app_def.name         = 'Bjond-PokitDok-App'
+  app_def.description  = 'Adapter between Bjond and PokitDok API.'
+  app_def.iconURL      = 'https://platform.pokitdok.com/documentation/v4/images/logo.png'
+  app_def.integrationEvent = [
+    BjondApi::BjondEvent.new.tap do |e|
+      e.id = 'c2784256-339d-481f-8163-5b77c506d72b'
+      e.jsonKey = 'eligibilityRequest'
+      e.name = 'Eligibility Request'
+      e.description = 'This event represents the submission of an eligibility request'
+      e.serviceId = app_def.id
+      e.fields = [
+        BjondApi::BjondField.new.tap do |f|
+          f.id = '2091de2e-dcf9-461a-b66c-ea4c01081f9c'
+          f.jsonKey = 'patient'
+          f.name = 'Patient'
+          f.description = 'The patient identifier'
+          f.fieldType = 'Person'
+          f.event = e.id
+        end,
+        BjondApi::BjondField.new.tap do |f|
+          f.id = '13f9dbb4-20db-4be0-b510-b630180e6488'
+          f.jsonKey = 'insuranceFlag'
+          f.name = 'Coverage Indicator'
+          f.description = 'Insurance Flag'
+          f.fieldType = 'MultipleChoice'
+          f.options = [
+            'True',
+            'False'
+          ]
+          f.event = e.id
+        end
+      ]
+    end
+  ]
+  app_def.integrationConsequence = [
+    BjondApi::BjondConsequence.new.tap do |consequence|
+      consequence.id = '8e3e75ba-4278-41cd-b005-70d27bbcc519'
+      consequence.jsonKey = 'checkEligibility'
+      consequence.name = 'Check Eligibility'
+      consequence.description = 'When this is fired, Axis will be updated with the event data that triggered the rule (if appropriate). If medical data is not in the condition, nothing will happen.'
+      consequence.webhook = "\/consequence\/update"
+      consequence.serviceId = app_def.id
+    end,
+    BjondApi::BjondConsequence.new.tap do |consequence|
+      consequence.id = '1a33cd24-17fb-48be-b9fa-5046814d6b96'
+      consequence.jsonKey = 'checkEligibilityPokitdok'
+      consequence.name = 'Check Eligibility with PokitDok'
+      consequence.description = 'When this is fired, the event data will be sent to pokitdok to check availability.'
+      consequence.webhook = "\/consequence\/checkpokitdok"
+      consequence.serviceId = app_def.id
+    end
+  ]
 end
