@@ -11,11 +11,7 @@ class X12Controller < ApplicationController
       pdc = PokitDokConfiguration.find_by_bjond_registration_id(r.id)
       parsed = JSON.parse(request.raw_post)
       parsed["bjondPersonId"] = pdc.sample_person_id
-      payload = {
-        :event_data => parsed,
-        :bjondPersonId => pdc.sample_person_id
-      }
-      BjondApi::fire_event(r, payload, config.active_definition.integrationEvent.first.id)
+      BjondApi::fire_event(r, parsed.to_json, config.active_definition.integrationEvent.first.id)
     end
     render :json => {
       :status => 'OK',
