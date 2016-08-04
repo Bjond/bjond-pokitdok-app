@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   get '/callsamplepokitdok' => 'home#call_pokitdok'
 
-  post '/consequence/update' => 'consequence#update'
+  post 'bjond-app/services/consequence/update' => 'consequence#update'
 
-  post '/consequence/checkpokitdok' => 'consequence#checkpokitdok'
+  post 'bjond-app/services/consequence/checkpokitdok' => 'consequence#checkpokitdok'
 
   resources :pokit_dok_configurations
 
