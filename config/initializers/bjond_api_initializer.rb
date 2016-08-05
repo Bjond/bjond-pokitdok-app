@@ -16,22 +16,24 @@ config.group_configuration_schema = {
       :type => 'string',
       :description => 'This is the client_secret, as specified by your pokitdok credentials.',
       :title => 'Client Secret'
+    },
+    :sample_person_id => {
+      :type => 'string',
+      :description => 'Bjond Person ID. This can be any person ID in the tenant.',
+      :title => 'Bjond Patient ID'
     }
   },
   :required => ['client_id', 'secret']
 }.to_json
 
-config.group_configuration = {
-  :client_id => ENV['pokitdok_client_id'], :secret => ENV['pokitdok_secret']
-}
-
 config.encryption_key_name = 'BJOND_POKITDOK_ENCRYPTION_KEY'
 
 def config.configure_group(result, bjond_registration)
   pdconfig = PokitDokConfiguration.find_or_initialize_by(:bjond_registration_id => bjond_registration.id)
-  if (pdconfig.client_id != result['client_id'] || pdconfig.secret = result['secret'])
+  if (pdconfig.client_id != result['client_id'] || pdconfig.secret = result['secret']|| redox_config.sample_person_id != result['sample_person_id'])
     pdconfig.client_id = result['client_id']
     pdconfig.secret = result['secret']
+    pdconfig.sample_person_id = result['sample_person_id']
     pdconfig.save
   end
   return pdconfig
@@ -43,7 +45,7 @@ def config.get_group_configuration(bjond_registration)
     puts 'No configuration has been saved yet.'
     return {}
   else 
-    return {:client_id => pdconfig.client_id, :secret => pdconfig.secret}
+    return pdconfig
   end
 end
 
