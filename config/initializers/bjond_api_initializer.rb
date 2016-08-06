@@ -54,13 +54,13 @@ config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
   app_def.author       = 'Bjond, Inc.'
   app_def.name         = 'Eligibility / Authorization'
   app_def.description  = 'Adapter between Bjond and PokitDok API.'
-  app_def.iconURL      = 'https://platform.pokitdok.com/documentation/v4/images/logo.png'
+  app_def.iconURL      = 'http://2045253e14zf1be2pd2k25gh.wpengine.netdna-cdn.com/wp-content/uploads/2015/08/PokitDok-Taps-Lemhi-to-Lead-Oversubscribed-34M-Series-B-Round-300x300.png'
   app_def.integrationEvent = [
     BjondApi::BjondEvent.new.tap do |e|
       e.id = 'c2784256-339d-481f-8163-5b77c506d72b'
-      e.jsonKey = 'eligibilityRequest'
-      e.name = 'Eligibility Request'
-      e.description = 'This event represents the submission of an eligibility request'
+      e.jsonKey = 'x12Request'
+      e.name = 'Incoming X12'
+      e.description = 'This event represents the submission of an X12 message.'
       e.serviceId = app_def.id
       e.fields = [
         BjondApi::BjondField.new.tap do |f|
@@ -69,6 +69,18 @@ config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
           f.name = 'Patient'
           f.description = 'The patient identifier'
           f.fieldType = 'Person'
+          f.event = e.id
+        end,
+        BjondApi::BjondField.new.tap do |f|
+          f.id = '45947cf6-7de0-462d-847f-8de50fce683d'
+          f.jsonKey = 'requestType'
+          f.name = 'Request Type'
+          f.description = 'This could be an authorization or an authorization request.'
+          f.fieldType = 'MultipleChoice'
+          f.options = [
+            'Authorization',
+            'Eligibility'
+          ]
           f.event = e.id
         end,
         BjondApi::BjondField.new.tap do |f|
@@ -90,7 +102,7 @@ config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
     BjondApi::BjondConsequence.new.tap do |consequence|
       consequence.id = '8e3e75ba-4278-41cd-b005-70d27bbcc519'
       consequence.jsonKey = 'checkEligibility'
-      consequence.name = 'Check Eligibility'
+      consequence.name = 'Send to Axis'
       consequence.description = 'When this is fired, Axis will be updated with the event data that triggered the rule (if appropriate). If medical data is not in the condition, nothing will happen.'
       consequence.webhook = "\/consequence\/update"
       consequence.serviceId = app_def.id
@@ -98,7 +110,7 @@ config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
     BjondApi::BjondConsequence.new.tap do |consequence|
       consequence.id = '1a33cd24-17fb-48be-b9fa-5046814d6b96'
       consequence.jsonKey = 'checkEligibilityPokitdok'
-      consequence.name = 'Check Eligibility with PokitDok'
+      consequence.name = 'Send to PokitDok'
       consequence.description = 'When this is fired, the event data will be sent to pokitdok to check availability.'
       consequence.webhook = "\/consequence\/checkpokitdok"
       consequence.serviceId = app_def.id
