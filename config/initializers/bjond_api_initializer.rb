@@ -94,6 +94,14 @@ config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
             'False'
           ]
           f.event = e.id
+        end,
+        BjondApi::BjondField.new.tap do |f|
+          f.id = '55793070-b1b2-47c8-986a-98c184181e1f'
+          f.jsonKey = 'procedureCode'
+          f.name = 'Procedure Code'
+          f.description = 'Code to describe the condition for the authorization request.'
+          f.fieldType = 'String'
+          f.event = e.id
         end
       ]
     end
