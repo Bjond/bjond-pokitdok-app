@@ -97,9 +97,17 @@ config.active_definition = BjondApi::BjondAppDefinition.new.tap do |app_def|
         end,
         BjondApi::BjondField.new.tap do |f|
           f.id = '55793070-b1b2-47c8-986a-98c184181e1f'
-          f.jsonKey = 'procedureCode'
-          f.name = 'Procedure Code'
+          f.jsonKey = 'diagnosisCode'
+          f.name = 'Diagnosis Code'
           f.description = 'Code to describe the condition for the authorization request.'
+          f.fieldType = 'String'
+          f.event = e.id
+        end,
+        BjondApi::BjondField.new.tap do |f|
+          f.id = '2148bb19-c1cc-4b01-be59-66a3b2c7caca'
+          f.jsonKey = 'providerName'
+          f.name = 'Provider Name'
+          f.description = 'Name of provider.'
           f.fieldType = 'String'
           f.event = e.id
         end
