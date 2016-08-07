@@ -35,6 +35,11 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
+  config.action_controller.default_url_options = {
+    :host => "stormy-coast-11743.herokuapp.com",
+    :root_url => "https://stormy-coast-11743.herokuapp.com"
+  }
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.

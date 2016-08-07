@@ -19,7 +19,7 @@ gem 'binding_of_caller', '~> 0.7.2'
 gem 'meta_request', '~> 0.3.4'
 gem 'awesome_print', '~> 1.6', '>= 1.6.1'
 gem 'pry'
-gem 'bjond-api', '~> 0.2.0'
+gem 'bjond-api', '~> 0.2.1'
 
 gem 'pokitdok-ruby', '~> 0.8.0'
 
